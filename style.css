@@ -7,3 +7,22 @@ body{
     border-radius: 10px;
     box-shadow: 5px 5px 10px rgb(29, 199, 225);
 }
+#transection-area{
+    display: none;
+}
+.in{
+    background-image: linear-gradient(to right, rgb(13, 232, 244), rgb(40, 93, 227)); 
+}
+.out{
+    background-image: linear-gradient(to right, rgb(252, 147, 10), rgb(238, 28, 28)); 
+}
+.save{
+    background-image: linear-gradient(to right, rgb(13, 244, 117), rgb(6, 245, 62)); 
+}
+.status{
+    margin: 0 20px;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+}
