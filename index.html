@@ -26,42 +26,96 @@
             <div class="col-md-4">
                 <div class="in status">
                     <h5>Cash-In</h5>
-                    <h2>$00</h2>
+                    <h2>$ <span id="currentIn">00</span></h2>
                 </div> 
             </div>
             <div class="col-md-4">
                 <div class="out status">
                     <h5>Cash-Out</h5>
-                    <h2>$00</h2>
+                    <h2>$ <span id="currentOut">00</span></h2>
                 </div> 
             </div>
             <div class="col-md-4">
                 <div class="save status">
                     <h5>Savings</h5>
-                    <h2>$2020</h2>
+                    <h2>$ <span id="currentSave">2020</span></h2>
                 </div> 
             </div>
         </div>
         <div class="row">
             <div class="col-md-6">
                 <div class="submit-area"><h4>Deposit</h4>
-                <input type="text" class="form-control" placeholder="Give me money">
-                <br><button class="btn btn-success">Dposit</button></div></div>
+                <input type="text" id="addin" class="form-control" placeholder="Give me money">
+                <br>
+                <button id="add" class="btn btn-success">Deposit</button></div></div>
                 
             <div class="col-md-6">
                 <div class="submit-area"><h4>Withdraw</h4>
-                <input type="text" class="form-control" placeholder="Take your money"> <br><button class="btn btn-success">Withdraw</button></div>
+                <input type="text" id="subin"  class="form-control" placeholder="Take your money">
+                <br>
+                <button id="sub" class="btn btn-success">Withdraw</button></div>
                 </div>
         </div>
     </div>
 
         <script>
+            //login button handle
             const loginBtn = document.getElementById('loginID');
             loginBtn.addEventListener('click',function(event) {
                 console.log('Entered Success');
                 const loginArea=document.getElementById('login-area');loginArea.style.display='none';
                 const transArea=document.getElementById('transection-area').style.display='block';
             })
+
+            //deposit button handle
+                const depositBtn = document.getElementById('add').addEventListener('click',function(event){
+                const depositNumber=number('addin');
+                // const depositAmount=document.getElementById('addin').value;
+                // const depositNumber=parseFloat(depositAmount);
+
+                updateSpanText('currentIn',depositNumber);
+                // const currentInAmount=document.getElementById('currentIn').innerText;
+                // const currentInNumber=parseFloat(currentInAmount);
+                // document.getElementById('currentIn').innerText=depositNumber+currentInNumber;
+                updateSpanText('currentSave',depositNumber);
+                // const currentSaveAmount=document.getElementById('currentSave').innerText;
+                // const currentSaveNumber=parseFloat(currentSaveAmount);
+                // document.getElementById('currentSave').innerText=depositNumber+currentSaveNumber;
+
+                document.getElementById('addin').value='';
+
+            })
+            //withdraw button handle
+                const withdrawBtn = document.getElementById('sub').addEventListener('click',function(event){
+
+                const withdrawNumber=number('subin');
+                // const withdrawAmount=document.getElementById('subin').value;
+                // const withdrawNumber=parseFloat(withdrawAmount);
+
+                updateSpanText('currentOut',withdrawNumber);
+                // const currentOutAmount=document.getElementById('currentOut').innerText;
+                // const currentOutNumber=parseFloat(currentOutAmount);
+                // document.getElementById('currentOut').innerText=withdrawNumber+currentOutNumber;
+                updateSpanText('currentSave',-1*withdrawNumber);
+                // const currentSaveAmount=document.getElementById('currentSave').innerText;
+                // const currentSaveNumber=parseFloat(currentSaveAmount);
+                // document.getElementById('currentSave').innerText=currentSaveNumber-withdrawNumber;
+
+                document.getElementById('subin').value='';
+
+            })
+
+            function number(id){
+                const Amount=document.getElementById(id).value;
+                const dwNumber=parseFloat(Amount);
+                return dwNumber;
+            }
+
+            function updateSpanText(id,dwNumber){
+                const currentAmount=document.getElementById(id).innerText;
+                const currentNumber=parseFloat(currentAmount);
+                document.getElementById(id).innerText=dwNumber+currentNumber;
+            }
         </script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
